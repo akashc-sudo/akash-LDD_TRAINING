@@ -1,0 +1,1 @@
+savedcmd_/home/akash/modules/Linux/Device_driver/kernel_program_02/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/akash/modules/Linux/Device_driver/kernel_program_02/Module.symvers -T /home/akash/modules/Linux/Device_driver/kernel_program_02/modules.order -i Module.symvers -e 

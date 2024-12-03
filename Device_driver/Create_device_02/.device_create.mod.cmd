@@ -1,0 +1,1 @@
+savedcmd_/home/akash/modules/Linux/Device_driver/kernel_program_02/device_create.mod := printf '%s\n'   device_create.o | awk '!x[$$0]++ { print("/home/akash/modules/Linux/Device_driver/kernel_program_02/"$$0) }' > /home/akash/modules/Linux/Device_driver/kernel_program_02/device_create.mod
