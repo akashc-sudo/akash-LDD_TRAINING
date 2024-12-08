@@ -195,8 +195,8 @@ static void  __exit FunExit(void)
 }
 
 /**      registring Init and Exit fun to the macros,
- *       when we used insmod FunInit will called and
- *       when we used rmmod  FunExit will called 
+ *       when insert the module with insmod FunInit will be invoked and
+ *       when remove the module with rmmod FunExit will execute 
  **/
 module_init(FunInit);
 module_exit(FunExit);
@@ -204,7 +204,7 @@ module_exit(FunExit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("AKASH <akashc@gmail.com>");
-MODULE_DESCRIPTION("BLINKILNG LED USING GPIO AND BUTTON WITH INTERRUPT");
+MODULE_DESCRIPTION("Configuring the Gpio17 pin of an Raspberrypi 4");
 MODULE_VERSION("6.0.0");
 
 
