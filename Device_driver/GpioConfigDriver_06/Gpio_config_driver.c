@@ -90,7 +90,7 @@ static ssize_t device_write(struct file *flip,const char __user *user_buffer,siz
         }
         kernel_buffer[size] = '\0';
 /**
- ** 	conerting string into long integer using simple_strtol	
+ ** 	converting string into long integer using simple_strtol	
  */
          op_value = simple_strtol(kernel_buffer,NULL,10);
 	 //op_value = kernel_buffer;
