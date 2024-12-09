@@ -1,0 +1,1 @@
+savedcmd_/home/sam/akash/akash/Device_driver/GpioInterruptDriver_07/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/sam/akash/akash/Device_driver/GpioInterruptDriver_07/Module.symvers -T /home/sam/akash/akash/Device_driver/GpioInterruptDriver_07/modules.order -i Module.symvers -e 

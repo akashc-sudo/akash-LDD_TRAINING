@@ -6,8 +6,6 @@
  *
  **/
 
-
-
 #include<linux/kernel.h>
 #include <linux/kernel.h>
 #include <linux/init.h>
@@ -20,17 +18,17 @@
 #include <linux/interrupt.h> 
 #include<linux/delay.h>
 
-#define GPIO_BUTTON  27   /* Gpio-27 mapped to the unique number --- can  check@ /sys/kernel/debug/gpio */
+#define GPIO_BUTTON  539   /* Gpio-27 mapped to the unique number 539 can  check@ /sys/kernel/debug/gpio */
 #define GPIO_LED     529  /* Gpio-17 mapped to the unique number 529 can  check@ /sys/kernel/debug/gpio */
 
 /*
- *	IRQ number :
+ *	IRQ number : gpio_to_irq return one 
  *	dev is type of struct dev_t,holds the pair of <major><minor> of an device/driver	
  **/
 static int irq_number;       
 static dev_t dev = 0;   
 static struct class *dev_class;
-static struct cdev cdev_device
+static struct cdev cdev_device;
 
 /**
  *Function prototypes
@@ -46,9 +44,10 @@ static void __exit FunExit(void);
 static irqreturn_t irq_handler_fun(int irq, void *dev_id)
 {
     static bool led_state = false;
-    led_state = !led_state;  // Toggle LED state
+    //led_state = !led_state;  // Toggle LED state
     gpio_set_value(GPIO_LED, led_state);
     pr_info("Button pressed: LED toggled to %d\n", led_state);
+    led_state = !led_state;  // Toggle LED state
     return IRQ_HANDLED;
 }
 
@@ -70,7 +69,7 @@ static int __init FunInit(void)
  *  if we are using the file_operation in driver 2nd parameter of the cdev_init should be refrence 
  *  of fileoperation instead of NULL
  */
-    cdev_init(&cdev_device,&f_ops);
+    cdev_init(&cdev_device,NULL);
 
 /* 
  * adding device to the system	using cdev_add api 
@@ -131,7 +130,7 @@ static int __init FunInit(void)
 /*  Configure button as input */
     gpio_direction_input(GPIO_BUTTON);
 /*  delay in ms */    
-    gpio_set_debounce(GPIO_BUTTON, 200);
+//    gpiod_set_debounce(GPIO_BUTTON, 200);
 
 /*
  * To ensure using gpio is valid or not using gpio_is_valid api 
@@ -163,7 +162,7 @@ static int __init FunInit(void)
     }
     
 /* Configure LED GPIO as output  */  
-   gpio_direction_output(GPIO_LED, 0);
+   gpio_direction_output(GPIO_LED, 1);
 
 /*  Get IRQ number for the button GPIO */
     irq_number = gpio_to_irq(GPIO_BUTTON);
