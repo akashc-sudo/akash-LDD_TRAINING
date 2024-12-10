@@ -17,10 +17,11 @@
 /* intialize the command for Ioctl api it consist 3 arguments
  * arg_1 : struct file 
  * arg_2 : command which is recieved from user space based on that it will operates in kernel space
- * arg_3 : argument   */
+ * arg_3 : argument   
+ */
 
 
-#define GPIO_MAGIC     'G'
+#define GPIO_MAGIC     'A'
 #define TO_SET_DIR   _IOW(GPIO_MAGIC, 0, int)  // Set direction (input/output)
 #define TO_WRITE     _IOW(GPIO_MAGIC, 1, int)  // Write value to GPIO
 #define TO_READ      _IOR(GPIO_MAGIC, 2, int)  // Read value from GPIO
@@ -49,14 +50,14 @@ static int device_open(struct inode *inode, struct file *file)
 
 
 /*   Release the device    */
-static int gpio_release(struct inode *inode, struct file *file)
+static int device_release(struct inode *inode, struct file *file)
 {
     pr_info("device closed!\n");
     return 0;
 }
 
 /*	 ioctl handler     */
-static long gpio_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+static long device_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
 {
     int value;
     switch (cmd) {
