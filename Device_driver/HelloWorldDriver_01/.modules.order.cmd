@@ -1,1 +1,1 @@
-savedcmd_/home/akash/modules/Linux/Device_driver/HelloWorld_01/modules.order := {   echo /home/akash/modules/Linux/Device_driver/HelloWorld_01/helloWorld.o; :; } > /home/akash/modules/Linux/Device_driver/HelloWorld_01/modules.order
+savedcmd_/home/akash/akash/akash-LDD_TRAINING/Device_driver/HelloWorldDriver_01/modules.order := {   echo /home/akash/akash/akash-LDD_TRAINING/Device_driver/HelloWorldDriver_01/helloWorld.o; :; } > /home/akash/akash/akash-LDD_TRAINING/Device_driver/HelloWorldDriver_01/modules.order
