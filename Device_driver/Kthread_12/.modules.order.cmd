@@ -1,0 +1,1 @@
+savedcmd_/home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/modules.order := {   echo /home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/KthreadBasicDriver.o; :; } > /home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/modules.order

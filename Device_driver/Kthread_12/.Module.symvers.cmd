@@ -1,0 +1,1 @@
+savedcmd_/home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/Module.symvers -T /home/akash/akash/akash-LDD_TRAINING/Device_driver/Kthread_12/modules.order -i Module.symvers -e 
