@@ -46,9 +46,8 @@ static const struct file_operations fops = {
 /* Module initialization 
  * Creating directory with name "debugfs_device_dir" under /sys/kernel/debug/debugfs_device_dir
  * with the help of debugfs_create_dir api 
- * @para_1 : the name of dir going to be create as mentioned above
- * @para_2 : parent dir name for our new dir.NULL bydefault its creates under kernel dir
- *
+ * @para_1 : The name of dir which is going to be create as mentioned above
+ * @para_2 : parent dir name for our new dir,NULL represents creating dir under sys/kernel/debug/---
  **/
 
 static int __init FunInit(void) {
