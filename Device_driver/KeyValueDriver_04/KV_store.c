@@ -137,4 +137,4 @@ module_exit(simple_driver_exit);
 
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Akash");
-MODULE_DESCRIPTION("A Simple Linux Device Driver");
+MODULE_DESCRIPTION("A Simple Linux Device Driver to store key-value");
