@@ -32,7 +32,7 @@ int main()
 	  }
 	  while(1)
           {
-          printf("Enter the options given below\n1.To get oldest msg from the buffer\n2.To get all the msgs from  buffer\n3.To EXit the program\n");
+          printf("Enter the options given below\n1.To get oldest msg from the buffer\n2.To get all the msgs from  buffer\n3.To Add new msg to buffer\n 4.To EXit the program\n");
 	  scanf("%d",&op);
 	  switch(op)
 	  {

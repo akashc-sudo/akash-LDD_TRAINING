@@ -88,7 +88,7 @@ static ssize_t device_write(struct file *file, const char __user *user_buffer, s
     if (copy_from_user(temp_buffer,user_buffer,size)) {
         return -EFAULT;
     }
-
+    
     temp_buffer[size] = '\0'; // Null-terminate the string
 
     printk(KERN_INFO "simple_device: Received %zu bytes from the user\n",size);

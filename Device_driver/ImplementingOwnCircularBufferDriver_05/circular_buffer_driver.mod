@@ -1,1 +1,1 @@
-/home/akash/modules/Linux/Device_driver/Circular_buffer_05/circular_buffer_driver.o
+/home/akash/akash/akash-LDD_TRAINING/Device_driver/ImplementingOwnCircularBufferDriver_05/circular_buffer_driver.o
