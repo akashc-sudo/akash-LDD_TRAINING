@@ -1,0 +1,1 @@
+savedcmd_/home/akash/akash/akash-LDD_TRAINING/Device_driver/Spinlock_14/SpinLockDriver.mod := printf '%s\n'   SpinLockDriver.o | awk '!x[$$0]++ { print("/home/akash/akash/akash-LDD_TRAINING/Device_driver/Spinlock_14/"$$0) }' > /home/akash/akash/akash-LDD_TRAINING/Device_driver/Spinlock_14/SpinLockDriver.mod
