@@ -35,6 +35,12 @@ MODULE_INFO(retpoline, "Y");
 
 static const char ____versions[]
 __used __section("__versions") =
+	"\x18\x00\x00\x00\x38\xf0\x13\x32"
+	"mutex_unlock\0\0\0\0"
+	"\x1c\x00\x00\x00\x6e\x64\xf7\xb3"
+	"kthread_should_stop\0"
+	"\x18\x00\x00\x00\x9f\x0c\xfb\xce"
+	"__mutex_init\0\0\0\0"
 	"\x1c\x00\x00\x00\x2b\x2f\xec\xe3"
 	"alloc_chrdev_region\0"
 	"\x14\x00\x00\x00\x24\x87\x65\x5c"
@@ -65,10 +71,10 @@ __used __section("__versions") =
 	"_printk\0"
 	"\x1c\x00\x00\x00\xca\x39\x82\x5b"
 	"__x86_return_thunk\0\0"
+	"\x14\x00\x00\x00\x4b\x8d\xfa\x4d"
+	"mutex_lock\0\0"
 	"\x10\x00\x00\x00\xf9\x82\xa4\xf9"
 	"msleep\0\0"
-	"\x1c\x00\x00\x00\x6e\x64\xf7\xb3"
-	"kthread_should_stop\0"
 	"\x18\x00\x00\x00\x3a\x0a\xd8\xfc"
 	"module_layout\0\0\0"
 	"\x00\x00\x00\x00\x00\x00\x00\x00";
@@ -76,4 +82,4 @@ __used __section("__versions") =
 MODULE_INFO(depends, "");
 
 
-MODULE_INFO(srcversion, "E536EB7E0D6B933ECEB4788");
+MODULE_INFO(srcversion, "496CFCE52A3F6CA6E393EDC");
