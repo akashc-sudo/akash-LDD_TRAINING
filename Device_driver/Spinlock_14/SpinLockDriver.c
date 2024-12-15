@@ -1,5 +1,5 @@
 
-/* applying mutex locking mechanism on threads */
+/*  Mutex locking mechanism on threads */
 #include<linux/kernel.h>
 #include<linux/init.h>
 #include<linux/module.h>
