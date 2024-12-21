@@ -72,7 +72,7 @@ static int I2C_Read(unsigned char *out_buf, unsigned int len)
 static void SSD1306_Write(bool is_cmd, unsigned char data)
 {
     unsigned char buf[2] = {0};
-    int ret;
+    //int ret;
     
     /*
     ** First byte is always control byte. Data is followed after that.
@@ -93,7 +93,7 @@ static void SSD1306_Write(bool is_cmd, unsigned char data)
     ** 
     ** Please refer the datasheet for more information. 
     **    
-    */ 
+    */
     if( is_cmd == true )
     {
         buf[0] = 0x00;
@@ -107,18 +107,77 @@ static void SSD1306_Write(bool is_cmd, unsigned char data)
     
     ret = I2C_Write(buf, 2);
 }
-
+/*
+** This function sends the commands that need to used to Initialize the OLED.
+**
+**  Arguments:
+**      none
+** 
+*/
+static int SSD1306_DisplayInit(void)
+{
+    msleep(100);               // delay
+    /*
+    ** Commands to initialize the SSD_1306 OLED Display
+    */
+    SSD1306_Write(true, 0xAE); // Entire Display OFF
+    SSD1306_Write(true, 0xD5); // Set Display Clock Divide Ratio and Oscillator Frequency
+    SSD1306_Write(true, 0x80); // Default Setting for Display Clock Divide Ratio and Oscillator Frequency that is recommended
+    SSD1306_Write(true, 0xA8); // Set Multiplex Ratio
+    SSD1306_Write(true, 0x3F); // 64 COM lines
+    SSD1306_Write(true, 0xD3); // Set display offset
+    SSD1306_Write(true, 0x00); // 0 offset
+    SSD1306_Write(true, 0x40); // Set first line as the start line of the display
+    SSD1306_Write(true, 0x8D); // Charge pump
+    SSD1306_Write(true, 0x14); // Enable charge dump during display on
+    SSD1306_Write(true, 0x20); // Set memory addressing mode
+    SSD1306_Write(true, 0x00); // Horizontal addressing mode
+    SSD1306_Write(true, 0xA1); // Set segment remap with column address 127 mapped to segment 0
+    SSD1306_Write(true, 0xC8); // Set com output scan direction, scan from com63 to com 0
+    SSD1306_Write(true, 0xDA); // Set com pins hardware configuration
+    SSD1306_Write(true, 0x12); // Alternative com pin configuration, disable com left/right remap
+    SSD1306_Write(true, 0x81); // Set contrast control
+    SSD1306_Write(true, 0x80); // Set Contrast to 128
+    SSD1306_Write(true, 0xD9); // Set pre-charge period
+    SSD1306_Write(true, 0xF1); // Phase 1 period of 15 DCLK, Phase 2 period of 1 DCLK
+    SSD1306_Write(true, 0xDB); // Set Vcomh deselect level
+    SSD1306_Write(true, 0x20); // Vcomh deselect level ~ 0.77 Vcc
+    SSD1306_Write(true, 0xA4); // Entire display ON, resume to RAM content display
+    SSD1306_Write(true, 0xA6); // Set Display in Normal Mode, 1 = ON, 0 = OFF
+    SSD1306_Write(true, 0x2E); // Deactivate scroll
+    SSD1306_Write(true, 0xAF); // Display ON in normal mode
+    
+    return 0;
+}
+/*
+** This function Fills the complete OLED with this data byte.
+**
+**  Arguments:
+**      data  -> Data to be filled in the OLED
+** 
+*/
+static void SSD1306_Fill(unsigned char data)
+{
+    unsigned int total  = 128 * 8;  // 8 pages x 128 segments x 8 bits of data
+    unsigned int i      = 0;
+    
+    //Fill the Display
+    for(i = 0; i < total; i++)
+    {
+        SSD1306_Write(false, data);
+    }
+}
 
 /*
 ** This function getting called when the slave has been found
 ** Note : This will be called only once when we load the driver.
 */
-static int etx_oled_probe(struct i2c_client *client,const struct i2c_device_id *id)
+static int etx_oled_probe(struct i2c_client *client)
 {
-  //  SSD1306_DisplayInit();
+    SSD1306_DisplayInit();
     
     //fill the OLED with this data
-   // SSD1306_Fill(0xFF);
+    SSD1306_Fill(0xFF);
 
     pr_info("OLED Probed!!!\n");
     
@@ -129,13 +188,13 @@ static int etx_oled_probe(struct i2c_client *client,const struct i2c_device_id *
 ** This function getting called when the slave has been removed
 ** Note : This will be called only once when we unload the driver.
 */
-static int etx_oled_remove(struct i2c_client *client)
+static void etx_oled_remove(struct i2c_client *client)
 {   
     //fill the OLED with this data
     SSD1306_Fill(0x00);
     
     pr_info("OLED Removed!!!\n");
-    return 0;
+    return;
 }
 
 /*
@@ -155,9 +214,9 @@ static struct i2c_driver etx_oled_driver = {
             .name   = SLAVE_DEVICE_NAME,
             .owner  = THIS_MODULE,
         },
-        .probe          = etx_oled_probe,
-        .remove         = etx_oled_remove,
-        .id_table       = etx_oled_id,
+        .probe= etx_oled_probe,
+        .remove=etx_oled_remove,
+        .id_table=etx_oled_id,
 };
 
 /*
@@ -177,7 +236,7 @@ static int __init etx_driver_init(void)
     
     if( etx_i2c_adapter != NULL )
     {
-        etx_i2c_client_oled = i2c_new_device(etx_i2c_adapter, &oled_i2c_board_info);
+        etx_i2c_client_oled = i2c_new_client_device(etx_i2c_adapter, &oled_i2c_board_info);
         
         if( etx_i2c_client_oled != NULL )
         {

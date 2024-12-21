@@ -1,0 +1,1 @@
+savedcmd_/home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/i2cDummyDriver.mod := printf '%s\n'   i2cDummyDriver.o | awk '!x[$$0]++ { print("/home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/"$$0) }' > /home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/i2cDummyDriver.mod

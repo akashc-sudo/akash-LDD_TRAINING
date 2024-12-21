@@ -1,0 +1,1 @@
+savedcmd_/home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/modules.order := {   echo /home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/i2cDummyDriver.o; :; } > /home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/modules.order

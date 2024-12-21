@@ -1,0 +1,1 @@
+savedcmd_/home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/Module.symvers -T /home/sam/akash/akash-LDD_TRAINING/Device_driver/I2c_16/modules.order -i Module.symvers -e 
