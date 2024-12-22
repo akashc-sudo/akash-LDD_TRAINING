@@ -1,23 +1,23 @@
 /***************************************************************************//**
 *  \file       driver.c
 *
-*  \details    Simple I2C driver explanation (SSD_1306 OLED Display Interface)
+*  \details    Simple I2C driver(SSH_1106 OLED Display Interface)
 *
-*  \author     EmbeTronicX
+*  \author     Akash 
 *
-*  \Tested with Linux raspberrypi 5.4.51-v7l+
+*  \Tested with Linux raspberrypi4
 *
 * *******************************************************************************/
-#include <linux/module.h>
-#include <linux/init.h>
-#include <linux/slab.h>
-#include <linux/i2c.h>
-#include <linux/delay.h>
-#include <linux/kernel.h>
+#include<linux/module.h>
+#include<linux/init.h>
+#include<linux/slab.h>
+#include<linux/i2c.h>
+#include<linux/delay.h>
+#include<linux/kernel.h>
 
 #define I2C_BUS_AVAILABLE   (          1 )              // I2C Bus available in our Raspberry Pi
 #define SLAVE_DEVICE_NAME   ( "ETX_OLED" )              // Device and Driver Name
-#define SSD1306_SLAVE_ADDR  (       0x3C )              // SSD1306 OLED Slave Address
+#define SSD1306_SLAVE_ADDR  (       0x3C )              // SSHc1306 OLED Slave Address
 
 static struct i2c_adapter *etx_i2c_adapter     = NULL;  // I2C Adapter Structure
 static struct i2c_client  *etx_i2c_client_oled = NULL;  // I2C Cient Structure (In our case it is OLED)
@@ -37,6 +37,7 @@ static int I2C_Write(unsigned char *buf, unsigned int len)
     ** ACK/NACK and Stop condtions will be handled internally.
     */ 
     int ret = i2c_master_send(etx_i2c_client_oled, buf, len);
+    pr_info("Successfully return data on bus");
     
     return ret;
 }
@@ -72,7 +73,7 @@ static int I2C_Read(unsigned char *out_buf, unsigned int len)
 static void SSD1306_Write(bool is_cmd, unsigned char data)
 {
     unsigned char buf[2] = {0};
-    //int ret;
+    int ret;
     
     /*
     ** First byte is always control byte. Data is followed after that.
@@ -177,6 +178,7 @@ static int etx_oled_probe(struct i2c_client *client)
     SSD1306_DisplayInit();
     
     //fill the OLED with this data
+    
     SSD1306_Fill(0xFF);
 
     pr_info("OLED Probed!!!\n");

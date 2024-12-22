@@ -42,6 +42,9 @@ __used __section("__versions") = {
 	{ 0x122c3a7e, "_printk" },
 	{ 0xc8f72763, "i2c_unregister_device" },
 	{ 0xb02e77f7, "i2c_del_driver" },
+	{ 0x86c9432a, "i2c_transfer_buffer_flags" },
+	{ 0xf0fdf6cb, "__stack_chk_fail" },
+	{ 0xf9a482f9, "msleep" },
 	{ 0x67a35d9, "module_layout" },
 };
 
@@ -49,4 +52,4 @@ MODULE_INFO(depends, "");
 
 MODULE_ALIAS("i2c:ETX_OLED");
 
-MODULE_INFO(srcversion, "C98074DD89AB73E94AC5D99");
+MODULE_INFO(srcversion, "D2D20D19D57FA17710CE49B");
