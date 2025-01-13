@@ -1,0 +1,16 @@
+/dts-v1/;
+/plugin/;
+
+/{
+    compatible = "bcrm,bcm2711";
+
+    fragment@0 {
+        target =<&gpio> ;  // Target the GPIO controller node
+        __overlay__ {
+            akash: akash {
+                label = "debug-akash";
+                gpios = <&gpio 17 0>;//get info about 17 pin
+            };
+        };
+    };
+};

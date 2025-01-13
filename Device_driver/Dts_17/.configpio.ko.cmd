@@ -1,0 +1,1 @@
+savedcmd_/home/pi/akash/Dts/configpio.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T arch/arm64/module.lds -o /home/pi/akash/Dts/configpio.ko /home/pi/akash/Dts/configpio.o /home/pi/akash/Dts/configpio.mod.o;  true
